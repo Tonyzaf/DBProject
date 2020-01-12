@@ -29,6 +29,16 @@ begin
 end$
 delimiter ;
 
+/*1o trigger*/
+DELIMITER $
+CREATE TRIGGER new_wrkr_sal
+AFTER INSERT ON Worker
+FOR EACH ROW
+    BEGIN 
+SET NEW.Salary=650
+    END$
+DELIMITER;
+
 /*2o trigger*/
 delimiter $
 create trigger check EIC
