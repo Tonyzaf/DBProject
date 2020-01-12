@@ -10,7 +10,7 @@ create table Paper(
     PaperNo INT primary key not null auto_increment,
     ParentNP varchar(25),
     Rel DATE not null,
-    Pages INT not null,
+    Pages TINYINT not null,
     Printed INT not null,
     Returned INT not null,
     constraint parent foreign key (ParentNP) references NewsPaper(Name)
@@ -21,16 +21,22 @@ create table Article(
     Path varchar(100) primary key not null,
     ParentPaper int,
     CatID int,
+    Auth varchar(25),
     Title varchar(25) not null,
     Summary text not null,
     KW varchar(25) not null,
     ord int not null,
+    acdate DATE not null,
+    page int not null,
+    length int not null,
     Status enum('accepted','to_be_revised','rejected') not null,
     Revised boolean not null,
     constraint ParentPaper foreign key (ParentPaper) references Paper(PaperNo)
     on delete cascade,
     constraint Category foreign key (CatID) references Category(ID)
-    on delete cascade
+    on delete cascade,
+    constraint Author foreign key(Auth) references Journalist(Username)
+    on update cascade
 );
 
 create table Worker(
