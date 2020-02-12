@@ -89,3 +89,38 @@ create table Publisher(
     on delete cascade
 );
 
+insert into NewsPaper values ('Kathimerini','Kathe Mera','Idioktitis 1');
+insert into NewsPaper values ('Parapolitika','Kathe Evdomada','Idioktitis 2');
+
+Insert into Paper values (null,'Kathimerini',curdate(),20,1000,200);
+Insert into Paper values (null,'Kathimerini',20191225,22,1000,200);
+Insert into Paper values (null,'Parapolitika',curdate(),35,2000,386);
+Insert into Paper values (null,'Parapolitika',20200113,35,2000,386);
+
+Insert into Worker values ('Worker1@Kathimerini.gr','Kathimerini',20170914,'Dimitrios','Papadopoulos',897.35,'DimPap','Password','Journalist');
+Insert into Worker values ('Worker2@Kathimerini.gr','Kathimerini',20170914,'Ioannis','Georgiou',732.68,'JohnGeo','Password','Editor In Chief');
+Insert into Worker values ('Worker3@Kathimerini.gr','Kathimerini',20170914,'Giorgos','Dimitriadis',922.94,'GioDim','Password','Admin');
+Insert into Worker values ('Worker4@Kathimerini.gr','Kathimerini',20170914,'Kostas','Papadopoulos',1258.87,'KosPap','Password','Publisher');
+
+Insert into Worker values ('Worker1@Parapolitika.gr','Parapolitika',20170914,'Dimitrios','Papadopoulos',897.35,'DimPap','Password','Editor In Chief');
+Insert into Worker values ('Worker2@Parapolitika.gr','Parapolitika',20170914,'Ioannis','Georgiou',732.68,'JohnGeo','Password','Publisher');
+Insert into Worker values ('Worker3@Parapolitika.gr','Parapolitika',20170914,'Giorgos','Dimitriadis',922.94,'GioDim','Password','Journalist');
+Insert into Worker values ('Worker4@Parapolitika.gr','Parapolitika',20170914,'Kostas','Papadopoulos',1258.87,'KosPap','Password','Admin');
+
+Insert into Admin values ('Giodim','Diaxeirish','2610123456','Korinthou','35','Patra');
+Insert into Admin values ('KosPap','Diaxeirish','2610654321','Maizwnos','188','Patra');
+
+Insert into EiC values ('JohnGeo','Kathimerini');
+Insert into EiC values ('DimPap','Parapolitika');
+
+Insert into Journalist values ('DimPap',3,'Kati Liga');
+Insert into Journalist values ('GioDim',8,'Kati Pio Liga');
+
+Insert into Publisher values ('KosPap','Kathimerini');
+Insert into Publisher values ('JohnGeo','Parapolitika');
+
+Insert into Category values (null,null,'Politiki','Ta nea ths politikis');
+Insert into Category values (null,null,'Koinwnia','Ta nea ths koinwnias');
+
+Insert into Article values ('C://Users/Administrator/Article1.Docx',1,1,'DimPap','Titlos','Kati simantiko sunevh','politiki',1,20201127,1,3,'to_be_revised',1);
+Insert into Article values ('C://Users/Administrator/Article2.Docx',2,2,'GioDim','Titlos Titlos Titlos','Kati akoma pio simantiko sunevh','astunomia',1,20201127,3,2,'accepted',1);

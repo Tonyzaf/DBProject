@@ -32,25 +32,44 @@ delimiter ;
 /*1o trigger*/
 DELIMITER $
 CREATE TRIGGER new_wrkr_sal
-AFTER INSERT ON Worker
+BEFORE INSERT ON Worker
 FOR EACH ROW
-    BEGIN 
-SET NEW.Salary=650
-    END$
-DELIMITER;
+BEGIN 
+    SET NEW.Salary=650;
+END $
+DELIMITER ;
 
 /*2o trigger*/
 delimiter $
-create trigger check EIC
-after insert on Article
+create trigger check_EIC
+before insert on Article
 for each row
 begin
     declare tempauth varchar(25);
-    declare temprole enum('Journalist','Admin','Editor In Chief','Publisher') not null;
-    set @tempauth = NEW.Auth;
+    declare temprole enum('Journalist','Admin','Editor In Chief','Publisher');
+    set tempauth = NEW.Auth;
     select role into temprole from Worker where Username=tempauth;
     if @temprole = 'Editor In Chief' then
         set NEW.Status = 'accepted';
     end if;
 end $
+delimiter ;
+
+/*3o trigger*/
+delimter $
+create trigger check_capacity
+before insert on Article
+for each row
+begin
+    declare templength int(11);
+    set @templength = NEW.length;
+    declare tempparent varchar(25);
+    set @tempparent = NEW.ParentPaper;
+    declare tempsum int(10);
+    select sum(Page) into tempsum from Article where ParentPaper=tempparent group by ParentPaper;
+    if @tempsum >= ParentPaper.length then 
+        signal sqlstate value '45000' set
+        message_text = 'To Fullo exei gemisei.H eisagwgh den mporei na oloklirwthei!';
+    end if;
+end$
 delimiter ;
